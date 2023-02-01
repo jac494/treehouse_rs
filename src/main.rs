@@ -1,20 +1,29 @@
 use std::io::stdin;
 
 #[derive(Debug)]
+enum VisitorAction {
+    Accept,
+    AcceptWithNote { note: String },
+    Refuse,
+    Probation,
+}
+
+#[derive(Debug)]
 struct Visitor {
-    name: String,
-    greeting: String,
+    action: VisitorAction,
+    age: i8,
 }
 
 impl Visitor {
-    fn new(name: &str, greeting: &str) -> Self {
+    fn new(name: &str, action: VisitorAction, age: i8) -> Self {
         Self {
             /* good to note here:
              * we're taking &str types but Visitor has String types
              * to_lowercase() and to_string() do the conversions
              */
             name: name.to_lowercase(),
-            greeting: greeting.to_string(),
+            action,
+            age,
         }
     }
 
