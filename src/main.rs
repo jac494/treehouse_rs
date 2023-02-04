@@ -10,6 +10,7 @@ enum VisitorAction {
 
 #[derive(Debug)]
 struct Visitor {
+    name: String,
     action: VisitorAction,
     age: i8,
 }
@@ -28,7 +29,18 @@ impl Visitor {
     }
 
     fn greet_visitor(&self) {
-        println!("{}", self.greeting);
+        match &self.action {
+            VisitorAction::Accept => println!("Wlecome to the treehouse, {}", self.name),
+            VisitorAction::AcceptWithNote { note } => {
+                println!("Welcome to the treehouse, {}", self.name);
+                println!("{}", note);
+                if self.age < 21 {
+                    println!("Do not serve alcohol to {}", self.name);
+                }
+            }
+            Visitor::Probation => println!("{} is now a probationary member", self.name),
+            VisitorAction::Refuse => println!("Do not allow {} in!", self.name),
+        }
     }
 }
 
