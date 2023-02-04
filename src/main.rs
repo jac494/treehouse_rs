@@ -30,7 +30,7 @@ impl Visitor {
 
     fn greet_visitor(&self) {
         match &self.action {
-            VisitorAction::Accept => println!("Wlecome to the treehouse, {}", self.name),
+            VisitorAction::Accept => println!("Welcome to the treehouse, {}", self.name),
             VisitorAction::AcceptWithNote { note } => {
                 println!("Welcome to the treehouse, {}", self.name);
                 println!("{}", note);
